@@ -11,6 +11,7 @@ public class Symbol {
             int c = 0, d = 0;
 
             if (checkRome(text)) {
+
                 c =  calculateRomeNumbers(text).get(0);
                 d =  calculateRomeNumbers(text).get(1);
                 int value = doSomething(text, c, d);
@@ -45,13 +46,27 @@ public class Symbol {
             boolean checkResult = false ;
             String r1 = str2.substring(0, index);
             String r2 = str2.substring(index + 1);
-            for (RomeNumbers r : rom) {
-                if (r.name().equals(r1)) {
-                    checkResult = true;
+//            if (Character.isDigit(Integer.parseInt(r2))) {
+//                throw new NumberFormatException("Invalid expression");
+//            }
+//            else {
+//                for (RomeNumbers r : rom) {
+//                    if (r.name().equals(r1)) {
+//                        checkResult = true;
+//                    }
+//
+//
+//                }
+//            }
+
+            if (r1 != null && r2 != null) {
+                for (RomeNumbers r :  rom) {
+                    if (r.name().equals(r1) && r.name().equals(r2)) {
+                        checkResult = true;
+                        break;
+                    }
                 }
-
             }
-
 
             return checkResult;
 
