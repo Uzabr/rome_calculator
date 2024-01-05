@@ -7,7 +7,7 @@ import romenumber.RomeNumbers;
 import java.util.ArrayList;
 
 public class Symbol {
-        public void  terminate(String text) throws Exception {
+        public String  terminate(String text) throws Exception {
             int c = 0, d = 0;
 
             if (checkRome(text)) {
@@ -15,16 +15,17 @@ public class Symbol {
                 c =  calculateRomeNumbers(text).get(0);
                 d =  calculateRomeNumbers(text).get(1);
                 int value = doSomething(text, c, d);
-                System.out.println(changeValueToName(value));
+                    return changeValueToName(value);
             } else  {
                 try {
                     int a =  getNumbers(text).get(0);
                     int b =  getNumbers(text).get(1);
-                    System.out.println(doSomething(text, a, b));
+                    return Integer.toString(doSomething(text, a, b));
                 }catch (Exception e){
                     System.out.println("You've entered wrong statement");
                 }
             }
+            return null;
         }
 
         public static String changeValueToName(int a){
