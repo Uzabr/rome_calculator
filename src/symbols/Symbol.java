@@ -17,15 +17,10 @@ public class Symbol {
                 int value = doSomething(text, c, d);
                     return changeValueToName(value);
             } else  {
-                try {
                     int a =  getNumbers(text).get(0);
                     int b =  getNumbers(text).get(1);
                     return Integer.toString(doSomething(text, a, b));
-                }catch (Exception e){
-                    System.out.println("You've entered wrong statement");
-                }
             }
-            return null;
         }
 
         public static String changeValueToName(int a){
@@ -60,7 +55,7 @@ public class Symbol {
 //                }
 //            }
 
-            if (r1 != null && r2 != null) {
+            if (r2 != null) {
                 for (RomeNumbers r :  rom) {
                     if (r.name().equals(r1) && r.name().equals(r2)) {
                         checkResult = true;
@@ -101,11 +96,17 @@ public class Symbol {
         // получаем числы из текста
         public static ArrayList<Integer> getNumbers(String text){
             ArrayList<Integer> list = new ArrayList<>();
-            String nettext =  text.replaceAll("[*+-/]", "");
+            String nettext =  text.replaceAll("[*+/]", "");
             String str = nettext.replaceAll("( )+", " ");
             int index = str.indexOf(" ");
+            if (str.startsWith("-")) {
+                throw new ArithmeticException("Wrong statement!");
+            }
             int a = Integer.parseInt(str.substring(0, index));
             int b = Integer.parseInt(str.substring(index + 1));
+            if (b > 10 || a > 10) {
+                throw new ArithmeticException("Numbers should be less then 10");
+            }
             list.add(a);
             list.add(b);
             return list;
