@@ -24,15 +24,20 @@ public class Symbol {
         }
 
         public static String changeValueToName(int a){
-            RomeNumbers[] romeValues = RomeNumbers.values();
-            String name = "";
-            for (RomeNumbers rom: romeValues) {
-                if (a == rom.getNumbers()){
-                    name = rom.name();
-                }
+//            RomeNumbers[] romeValues = RomeNumbers.values();
+            int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+            String[] romeValues = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+            StringBuilder builder = new StringBuilder();
 
+            String name = "";
+
+            for (int i =0; i < values.length; i++ ) {
+                while (a >= values[i]) {
+                    a = a - values[i];
+                    builder.append(romeValues[i]);
+                }
             }
-            return name;
+            return builder.toString();
         }
         public static boolean checkRome(String text) {
             RomeNumbers[] rom = RomeNumbers.values();
@@ -55,12 +60,10 @@ public class Symbol {
 //                }
 //            }
 
-            if (r2 != null) {
-                for (RomeNumbers r :  rom) {
-                    if (r.name().equals(r1) && r.name().equals(r2)) {
-                        checkResult = true;
-                        break;
-                    }
+            for (RomeNumbers r : rom) {
+                if (r.name().equals(r1) && r.name().equals(r2)) {
+                    checkResult = true;
+                    break;
                 }
             }
 
