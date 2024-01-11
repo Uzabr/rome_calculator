@@ -61,7 +61,7 @@ public class Symbol {
 //            }
 
             for (RomeNumbers r : rom) {
-                if (r.name().equals(r1) && r.name().equals(r2)) {
+                if (r.name().equals(r1) || r.name().equals(r2)) {
                     checkResult = true;
                     break;
                 }
@@ -102,6 +102,7 @@ public class Symbol {
             String nettext =  text.replaceAll("[*+/]", "");
             String str = nettext.replaceAll("( )+", " ");
             int index = str.indexOf(" ");
+            System.out.println(str);
             if (str.startsWith("-")) {
                 throw new ArithmeticException("Wrong statement!");
             }
