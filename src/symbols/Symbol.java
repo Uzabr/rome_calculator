@@ -47,7 +47,8 @@ public class Symbol {
             boolean checkResult = false ;
             String r1 = str2.substring(0, index);
             String r2 = str2.substring(index + 1);
-//            if (Character.isDigit(Integer.parseInt(r2))) {
+
+//            if (Character.isDigit(Integer.parseInt(r2)) && Character.isDigit(Integer.parseInt(r1))) {
 //                throw new NumberFormatException("Invalid expression");
 //            }
 //            else {
@@ -61,8 +62,15 @@ public class Symbol {
 //            }
 
             for (RomeNumbers r : rom) {
-                if (r.name().equals(r1) || r.name().equals(r2)) {
-                    checkResult = true;
+                if (r.name().equals(r1)){
+                    checkResult =true;
+                    break;
+                }
+            }
+
+            for (RomeNumbers r : rom) {
+                if (r.name().equals(r2)) {
+                    checkResult =true;
                     break;
                 }
             }
@@ -102,7 +110,6 @@ public class Symbol {
             String nettext =  text.replaceAll("[*+/]", "");
             String str = nettext.replaceAll("( )+", " ");
             int index = str.indexOf(" ");
-            System.out.println(str);
             if (str.startsWith("-")) {
                 throw new ArithmeticException("Wrong statement!");
             }
