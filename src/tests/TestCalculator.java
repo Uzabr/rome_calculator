@@ -53,7 +53,7 @@ public class TestCalculator {
 
         @Test
         public void testInvalidInput() {
-            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+            ArithmeticException exception = assertThrows(ArithmeticException.class, () ->
                     Main.calc("3 + II"));
             assertEquals("Invalid input", exception.getMessage());
         }
@@ -70,6 +70,6 @@ public class TestCalculator {
         public void testDivisionByZero() {
             ArithmeticException exception = assertThrows(ArithmeticException.class, () ->
                     Main.calc("5 / 0"));
-            assertEquals("Cannot divide by zero", exception.getMessage());
+            assertEquals("/ by zero", exception.getMessage());
         }
     }

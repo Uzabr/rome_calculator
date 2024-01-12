@@ -5,6 +5,7 @@ import operation.Operations;
 import romenumber.RomeNumbers;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Symbol {
         public String  terminate(String text) throws Exception {
@@ -14,6 +15,9 @@ public class Symbol {
 
                 c =  calculateRomeNumbers(text).get(0);
                 d =  calculateRomeNumbers(text).get(1);
+                if (d < c) {
+                    throw new ArithmeticException("Result cannot be less than 1 for Roman numerals");
+                }
                 int value = doSomething(text, c, d);
                     return changeValueToName(value);
             } else  {
@@ -41,6 +45,9 @@ public class Symbol {
         }
         public static boolean checkRome(String text) {
             RomeNumbers[] rom = RomeNumbers.values();
+            if(isNumber(text)) {
+                throw new ArithmeticException("Invalid input");
+            }
             String str = text.replaceAll("[+*-/]", " ");
             String str2 = str.replaceAll("( )+", " ");
             int index = str2.indexOf(" ");
@@ -104,11 +111,13 @@ public class Symbol {
         }
 
 
+
+
         // получаем числы из текста
         public static ArrayList<Integer> getNumbers(String text){
             ArrayList<Integer> list = new ArrayList<>();
-            String nettext =  text.replaceAll("[*+/]", "");
-            String str = nettext.replaceAll("( )+", " ");
+            String withoutSymb =  text.replaceAll("[A-Za-z]*[-+*/]", "");
+            String str = withoutSymb.replaceAll("( )+", " ");
             int index = str.indexOf(" ");
             if (str.startsWith("-")) {
                 throw new ArithmeticException("Wrong statement!");
@@ -150,5 +159,10 @@ public class Symbol {
             romeValues.add(firstRomeNumber);
             romeValues.add(secondRomeNumber);
             return romeValues;
+        }
+
+        static boolean isNumber(String expression) {
+            return expression.chars()
+                    .anyMatch(Character::isDigit);
         }
 }
