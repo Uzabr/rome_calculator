@@ -15,10 +15,12 @@ public class Symbol {
 
                 c =  calculateRomeNumbers(text).get(0);
                 d =  calculateRomeNumbers(text).get(1);
-                if (d < c) {
+
+                int value = doSomething(text, c, d);
+                if (value < 0) {
                     throw new ArithmeticException("Result cannot be less than 1 for Roman numerals");
                 }
-                int value = doSomething(text, c, d);
+                else
                     return changeValueToName(value);
             } else  {
                     int a =  getNumbers(text).get(0);
@@ -45,9 +47,9 @@ public class Symbol {
         }
         public static boolean checkRome(String text) {
             RomeNumbers[] rom = RomeNumbers.values();
-            if(isNumber(text)) {
-                throw new ArithmeticException("Invalid input");
-            }
+//            if(isNumber(text)) {
+//                throw new ArithmeticException("Invalid input");
+//            }
             String str = text.replaceAll("[+*-/]", " ");
             String str2 = str.replaceAll("( )+", " ");
             int index = str2.indexOf(" ");
@@ -55,32 +57,19 @@ public class Symbol {
             String r1 = str2.substring(0, index);
             String r2 = str2.substring(index + 1);
 
-//            if (Character.isDigit(Integer.parseInt(r2)) && Character.isDigit(Integer.parseInt(r1))) {
-//                throw new NumberFormatException("Invalid expression");
-//            }
-//            else {
-//                for (RomeNumbers r : rom) {
-//                    if (r.name().equals(r1)) {
-//                        checkResult = true;
-//                    }
-//
-//
-//                }
-//            }
-
             for (RomeNumbers r : rom) {
                 if (r.name().equals(r1)){
                     checkResult =true;
                     break;
                 }
             }
-
             for (RomeNumbers r : rom) {
                 if (r.name().equals(r2)) {
                     checkResult =true;
                     break;
                 }
             }
+            if (isNumber(r1) || isNumber(r2)) checkResult = false;
 
             return checkResult;
 

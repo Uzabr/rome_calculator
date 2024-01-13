@@ -43,7 +43,7 @@ public class TestCalculator {
 
         @Test
         public void testArabicDivision() throws Exception {
-            assertEquals("4", Main.calc("20 / 5"));
+            assertEquals("2", Main.calc("10 / 5"));
         }
 
         @Test
@@ -53,7 +53,7 @@ public class TestCalculator {
 
         @Test
         public void testInvalidInput() {
-            ArithmeticException exception = assertThrows(ArithmeticException.class, () ->
+            NumberFormatException exception = assertThrows(NumberFormatException.class, () ->
                     Main.calc("3 + II"));
             assertEquals("Invalid input", exception.getMessage());
         }
